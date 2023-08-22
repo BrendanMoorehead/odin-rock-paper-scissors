@@ -2,6 +2,11 @@ let randomNum = () => Math.floor(Math.random() * 3);
 
 let getComputerChoice = () => randomNum();
 
+const computerScoreDisplay = document.getElementById("computer-score");
+const playerScoreDisplay = document.getElementById("player-score");
+
+console.log(computerScoreDisplay.textContent);
+
 function numToChoice(num){
     switch(num){
     case 0:
@@ -38,9 +43,11 @@ function playRound(playerSelection, computerSelection){
     }
     else if (battleVal == 1 || battleVal == -2){
         playerScore += 1;
+        playerScoreDisplay.textContent = playerScore;
         return `You win! ${numToChoice(playerSelection)} beats ${numToChoice(computerSelection)}`;
     } 
     computerScore += 1;
+    computerScoreDisplay.textContent = computerScore;
     return `You lose! ${numToChoice(computerSelection)} beats ${numToChoice(playerSelection)}`;
 }
 
@@ -53,6 +60,8 @@ function game(){
 }
 let computerScore = 0, playerScore = 0;
 //game();
+
+
 
 let buttons = document.querySelectorAll('button');
 console.log(buttons);
