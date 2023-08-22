@@ -1,6 +1,6 @@
-let randomNum = () => Math.floor(Math.random() * 3);
+const randomNum = () => Math.floor(Math.random() * 3);
 
-let getComputerChoice = () => randomNum();
+const getComputerChoice = () => randomNum();
 
 const computerScoreDisplay = document.getElementById("computer-score");
 const playerScoreDisplay = document.getElementById("player-score");
@@ -9,6 +9,11 @@ const computerChoiceDisplay = document.getElementById("computer-choice");
 const playerChoiceDisplay = document.getElementById("player-choice");
 
 const winnerText = document.getElementById("winner-text");
+const gameWinner = document.getElementById("game-winner");
+
+
+let computerScore = 0, playerScore = 0;
+
 
 console.log(computerScoreDisplay.textContent);
 
@@ -37,8 +42,16 @@ function choiceToNum(choice){
         return "Invalid Selection";
     }
 }
-function checkWinner(){
-    if (computerScore == 5) console.log("Computer Wins!");
+function checkWinner (){
+
+    if (computerScore == 5) gameWinner.textContent = "Computer Wins!";
+    else if (playerScore == 5) gameWinner.textContent = "Player Wins!";
+    else return;
+
+    computerScore = 0;
+    playerScore = 0;
+    computerScoreDisplay.textContent = computerScore;
+    playerScoreDisplay.textContent = playerScore;
 }
 
 function playRound(playerSelection, computerSelection){
@@ -61,23 +74,11 @@ function playRound(playerSelection, computerSelection){
     return `You lose! ${numToChoice(computerSelection)} beats ${numToChoice(playerSelection)}`;
 }
 
-function game(){
-    for (let i = 0; i < 5; i++){
-        console.log(playRound(choiceToNum(prompt("Pick rock, paper, or scissors:")), getComputerChoice()));
-        console.log(`Your Score: ${playerScore}`);
-        console.log(`Computer Score: ${computerScore}`);
-    }
-}
-let computerScore = 0, playerScore = 0;
-//game();
-
-
-
 let buttons = document.querySelectorAll('button');
-console.log(buttons);
 buttons.forEach((element) => {
     element.addEventListener('click', () => {
         winnerText.innerText = (playRound(Number(element.value), getComputerChoice()));
+        checkWinner();
     });
 });
 
