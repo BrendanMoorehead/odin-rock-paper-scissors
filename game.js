@@ -27,6 +27,9 @@ function choiceToNum(choice){
         return "Invalid Selection";
     }
 }
+function checkWinner(){
+    if (computerScore == 5) console.log("Computer Wins!");
+}
 
 function playRound(playerSelection, computerSelection){
     const battleVal = playerSelection - computerSelection;
@@ -49,4 +52,13 @@ function game(){
     }
 }
 let computerScore = 0, playerScore = 0;
-game();
+//game();
+
+let buttons = document.querySelectorAll('button');
+console.log(buttons);
+buttons.forEach((element) => {
+    element.addEventListener('click', () => {
+        console.log(playRound(Number(element.value), getComputerChoice()));
+    });
+});
+
