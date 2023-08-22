@@ -8,6 +8,8 @@ const playerScoreDisplay = document.getElementById("player-score");
 const computerChoiceDisplay = document.getElementById("computer-choice");
 const playerChoiceDisplay = document.getElementById("player-choice");
 
+const winnerText = document.getElementById("winner-text");
+
 console.log(computerScoreDisplay.textContent);
 
 function numToChoice(num){
@@ -46,6 +48,7 @@ function playRound(playerSelection, computerSelection){
 
     const battleVal = playerSelection - computerSelection;
     if (battleVal == 0){
+
         return `You tie! You both chose ${numToChoice(playerSelection)}`;
     }
     else if (battleVal == 1 || battleVal == -2){
@@ -74,7 +77,7 @@ let buttons = document.querySelectorAll('button');
 console.log(buttons);
 buttons.forEach((element) => {
     element.addEventListener('click', () => {
-        console.log(playRound(Number(element.value), getComputerChoice()));
+        winnerText.innerText = (playRound(Number(element.value), getComputerChoice()));
     });
 });
 
