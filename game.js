@@ -5,6 +5,9 @@ let getComputerChoice = () => randomNum();
 const computerScoreDisplay = document.getElementById("computer-score");
 const playerScoreDisplay = document.getElementById("player-score");
 
+const computerChoiceDisplay = document.getElementById("computer-choice");
+const playerChoiceDisplay = document.getElementById("player-choice");
+
 console.log(computerScoreDisplay.textContent);
 
 function numToChoice(num){
@@ -37,6 +40,10 @@ function checkWinner(){
 }
 
 function playRound(playerSelection, computerSelection){
+
+    playerChoiceDisplay.textContent = numToChoice(playerSelection);
+    computerChoiceDisplay.textContent = numToChoice(computerSelection);
+
     const battleVal = playerSelection - computerSelection;
     if (battleVal == 0){
         return `You tie! You both chose ${numToChoice(playerSelection)}`;
